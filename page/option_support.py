@@ -40,8 +40,8 @@ def backToMenuWindow():
     destroy_window()
     menu.vp_start_gui()
 
-def openFile():
-    return easygui.fileopenbox(title='Select File (.txt)')
+def openFile(dsPath = False):
+    return easygui.fileopenbox(title = "Select file " + "for the separated signature" if dsPath else ""  + " (.txt)")
 
 def tapInsert():
     path = openFile()
@@ -64,9 +64,17 @@ def tapSeparate():
     path = openFile()
     if (path != None):
         if (start.SorV == "S"):
-            True
+            f = open('./key/rsa.pri', 'r')
+            S = ds.make_digital_signature(path, int(float(f.read().split(" ")[0])), start.p*start.q)
+            dsPath = openFile(dsPath = True)
+            ds.add_digital_signature(S, dsPath)
+            f.close()
+            start.status = "Status: Document succesfully signed to " + path.split('\\')[-1]
         elif (start.SorV == "V"):
-            True
+            f = open('./key/rsa.pub', 'r')
+            dsPath = openFile(dsPath = True)
+            start.status = "Status: " + ds.verification_ds(path, dsPath, int(f.read().split(" ")[0]), start.p*start.q, "No")
+            f.close()
         else:
             return
         backToMenuWindow()
