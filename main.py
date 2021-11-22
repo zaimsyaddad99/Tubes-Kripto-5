@@ -38,9 +38,9 @@ elif(n == 3):
     publick = int(input("masukan nilai key public: "))
     n = int(input("masukan nilai n: "))
     if(m == 1):
-        ds.verification_ds(file_path,file_path,publick,n)
+        ds.verification_ds(file_path,file_path,publick,n,"Yes")
     if(m == 2):
         file_path_ds = input("masukan file path tempat menyimpan ds: ")
-        ds.verification_ds(file_path,file_path_ds,publick,n)
+        ds.verification_ds(file_path,file_path_ds,publick,n,"No")
 else:
     print("menu yang dipilih tidak valid")
