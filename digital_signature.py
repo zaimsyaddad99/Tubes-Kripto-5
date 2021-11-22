@@ -78,9 +78,9 @@ def verification_ds(file_path,file_path_ds,publick,n,status):
     h = dh % n
 
     if(h_ == h):
-        print("Tanda tangan valid")
+        return "Tanda tangan valid"
     else:
-        print("Tanda tangan tidak valid")
+        return "Tanda tangan tidak valid"
     
 # H = hes("contoh")
 # S = make_digital_signature(H,171635,223427)

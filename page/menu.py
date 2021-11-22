@@ -209,6 +209,5 @@ class mainWindow:
         self.statusLabel.configure(disabledforeground="#a3a3a3")
         self.statusLabel.configure(font="-family {Segoe UI} -size 9")
         self.statusLabel.configure(foreground="#000000")
-        self.statusLabel.configure(text='''Status: App succesfully opened''')
         self.statusLabel.configure(textvariable=menu_support.labelStatusVar)
 

@@ -75,7 +75,7 @@ class Option:
         self.insertButton.configure(highlightcolor="black")
         self.insertButton.configure(pady="0")
         self.insertButton.configure(text='''Embed To File''')
-        self.insertButton.configure(command=lambda:option_support.backToMenuWindow())
+        self.insertButton.configure(command=lambda:option_support.tapInsert())
 
         self.separateButton = tk.Button(top)
         self.separateButton.place(relx=0.525, rely=0.467, height=33, width=107)
@@ -89,7 +89,7 @@ class Option:
         self.separateButton.configure(highlightcolor="black")
         self.separateButton.configure(pady="0")
         self.separateButton.configure(text='''Separated File''')
-        self.separateButton.configure(command=lambda:option_support.backToMenuWindow())
+        self.separateButton.configure(command=lambda:option_support.tapSeparate())
 
         self.Label1 = tk.Label(top)
         self.Label1.place(relx=0.225, rely=0.2, height=26, width=222)

@@ -20,7 +20,9 @@ except ImportError:
     py3 = True
 
 import page.menu as menu
+import digital_signature as ds
 import easygui
+import start
 
 def init(top, gui, *args, **kwargs):
     global w, top_level, root
@@ -40,3 +42,31 @@ def backToMenuWindow():
 
 def openFile():
     return easygui.fileopenbox(title='Select File (.txt)')
+
+def tapInsert():
+    path = openFile()
+    if (path != None):
+        if (start.SorV == "S"):
+            f = open('./key/rsa.pri', 'r')
+            S = ds.make_digital_signature(path, int(float(f.read().split(" ")[0])), start.p*start.q)
+            ds.add_digital_signature(S, path)
+            f.close()
+            start.status = "Status: Document succesfully signed to " + path.split('\\')[-1]
+        elif (start.SorV == "V"):
+            f = open('./key/rsa.pub', 'r')
+            start.status = "Status: " + ds.verification_ds(path, path, int(f.read().split(" ")[0]), start.p*start.q, "Yes")
+            f.close()
+        else:
+            return
+        backToMenuWindow()
+
+def tapSeparate():
+    path = openFile()
+    if (path != None):
+        if (start.SorV == "S"):
+            True
+        elif (start.SorV == "V"):
+            True
+        else:
+            return
+        backToMenuWindow()

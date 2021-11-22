@@ -32,7 +32,7 @@ def init(top, gui, *args, **kwargs):
 def setTkVariable():
     global labelStatusVar
     labelStatusVar = tk.StringVar()
-    labelStatusVar.set("Status: App succesfully opened")
+    labelStatusVar.set(start.status)
 
 def destroy_window():
     # Function which closes the window.
@@ -41,9 +41,9 @@ def destroy_window():
     top_level = None
 
 def openOptionWindow(char):
+    start.SorV = char
     destroy_window()
     option.vp_start_gui()
-    start.SorV = char
 
 def generatePubKey():
     save_key_pub(start.e, start.p*start.q)
