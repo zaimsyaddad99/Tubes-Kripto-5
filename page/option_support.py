@@ -20,6 +20,7 @@ except ImportError:
     py3 = True
 
 import page.menu as menu
+import easygui
 
 def init(top, gui, *args, **kwargs):
     global w, top_level, root
@@ -36,3 +37,6 @@ def destroy_window():
 def backToMenuWindow():
     destroy_window()
     menu.vp_start_gui()
+
+def openFile():
+    return easygui.fileopenbox(title='Select File (.txt)')
