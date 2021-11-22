@@ -72,21 +72,24 @@ def get_text(file_path,status):
 def verification_ds(file_path,file_path_ds,publick,n,status):
     ds = get_ds(file_path_ds)
     ds = int(ds,16)
+    print("ini ds nya",ds)
     h_ = pow(ds,publick)%n
     text = get_text(file_path,status)
-    H = str(sha256.sha256(text))[4:]
+    H = str(sha256.sha256(text))
     dh = int(H,36)
     h = dh % n
-
+    
+    print(h_)
+    print(h)
     if(h_ == h):
         return( "Tanda tangan valid")
     else:
         return( "Tanda tangan tidak valid")
     
 # H = hes("contoh")
-S = make_digital_signature("tes.txt",171635,223427)
-print(S)
-add_digital_signature(89567,"tes.txt")
+# S = make_digital_signature("tes.txt",171635,223427)
+# print(S)
+# add_digital_signature(89567,"tes.txt")
 # ds = get_ds("contoh.txt")
 # print(ds)
 # verification_ds("tes.txt","tes.txt",731,223427,"Yes")

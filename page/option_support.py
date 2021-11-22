@@ -48,13 +48,13 @@ def tapInsert():
     if (path != None):
         if (start.SorV == "S"):
             f = open('./key/rsa.pri', 'r')
-            S = ds.make_digital_signature(path, int(float(f.read().split(" ")[0])), start.p*start.q)
+            S = ds.make_digital_signature(path, int(float(f.read().split(" ")[0])), 223427)
             ds.add_digital_signature(S, path)
             f.close()
             start.status = "Status: Document succesfully signed to " + path.split('\\')[-1]
         elif (start.SorV == "V"):
             f = open('./key/rsa.pub', 'r')
-            start.status = "Status: " + ds.verification_ds(path, path, int(f.read().split(" ")[0]), start.p*start.q, "Yes")
+            start.status = "Status: " + ds.verification_ds(path, path, int(f.read().split(" ")[0]), 223427, "Yes")
             f.close()
         else:
             return
@@ -65,7 +65,7 @@ def tapSeparate():
     if (path != None):
         if (start.SorV == "S"):
             f = open('./key/rsa.pri', 'r')
-            S = ds.make_digital_signature(path, int(float(f.read().split(" ")[0])), start.p*start.q)
+            S = ds.make_digital_signature(path, int(float(f.read().split(" ")[0])), 223427)
             dsPath = openFile(dsPath = True)
             ds.add_digital_signature(S, dsPath)
             f.close()
@@ -73,7 +73,7 @@ def tapSeparate():
         elif (start.SorV == "V"):
             f = open('./key/rsa.pub', 'r')
             dsPath = openFile(dsPath = True)
-            start.status = "Status: " + ds.verification_ds(path, dsPath, int(f.read().split(" ")[0]), start.p*start.q, "No")
+            start.status = "Status: " + ds.verification_ds(path, dsPath, int(f.read().split(" ")[0]), 223427, "No")
             f.close()
         else:
             return
