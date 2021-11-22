@@ -1,8 +1,7 @@
 import page.menu as guistart
 
 def initialize():
-	global status, SorV, p, q, e
-	status = "Status: App succesfully opened"
+	global SorV, p, q, e
 	SorV = ""
 	f = open("key.config", "r")
 	p, q, e = f.read().split(" ")

@@ -21,12 +21,18 @@ except ImportError:
 
 import page.option as option
 import start
+from rsa import save_key_pub, save_key_pri, findPrivate
 
 def init(top, gui, *args, **kwargs):
     global w, top_level, root
     w = gui
     top_level = top
     root = top
+
+def setTkVariable():
+    global labelStatusVar
+    labelStatusVar = tk.StringVar()
+    labelStatusVar.set("Status: App succesfully opened")
 
 def destroy_window():
     # Function which closes the window.
@@ -38,3 +44,11 @@ def openOptionWindow(char):
     destroy_window()
     option.vp_start_gui()
     start.SorV = char
+
+def generatePubKey():
+    save_key_pub(start.e, start.p*start.q)
+    labelStatusVar.set("Status: Public Key generated to './key/rsa.pub'")
+
+def generatePriKey():
+    save_key_pri(start.p*start.q, findPrivate(start.e, (start.p-1)*(start.q-1)))
+    labelStatusVar.set("Status: Private Key generated to './key/rsa.pri'")

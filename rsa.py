@@ -67,14 +67,14 @@ def save_key(e,n,d):
     file.write(str(d)+' '+str(n)) 
     file.close()
     
-def save_key_pri(e,n,d):
+def save_key_pri(n,d):
 
     # private key
     file = open("./key/rsa.pri", "w") 
     file.write(str(d)+' '+str(n)) 
     file.close() 
 
-def save_key_pub(e,n,d):
+def save_key_pub(e,n):
     # public key
     file = open("./key/rsa.pub", "w") 
     file.write(str(e) + ' ' + str(n))

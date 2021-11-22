@@ -29,6 +29,7 @@ def vp_start_gui():
     prog_call = sys.argv[0]
     prog_location = os.path.split(prog_call)[0]
     root = tk.Tk()
+    menu_support.setTkVariable()
     top = mainWindow (root)
     menu_support.init(root, top)
     root.mainloop()
@@ -93,6 +94,7 @@ class mainWindow:
         self.genPriKeyButton.configure(highlightcolor="black")
         self.genPriKeyButton.configure(pady="0")
         self.genPriKeyButton.configure(text='''Generate Private Key''')
+        self.genPriKeyButton.configure(command=lambda:menu_support.generatePriKey())
 
         self.genPubKeyButton = tk.Button(top)
         self.genPubKeyButton.place(relx=0.513, rely=0.35, height=33, width=150)
@@ -106,6 +108,7 @@ class mainWindow:
         self.genPubKeyButton.configure(highlightcolor="black")
         self.genPubKeyButton.configure(pady="0")
         self.genPubKeyButton.configure(text='''Generate Public Key''')
+        self.genPubKeyButton.configure(command=lambda:menu_support.generatePubKey())
 
         self.signButton = tk.Button(top)
         self.signButton.place(relx=0.4, rely=0.533, height=33, width=175)
@@ -207,4 +210,5 @@ class mainWindow:
         self.statusLabel.configure(font="-family {Segoe UI} -size 9")
         self.statusLabel.configure(foreground="#000000")
         self.statusLabel.configure(text='''Status: App succesfully opened''')
+        self.statusLabel.configure(textvariable=menu_support.labelStatusVar)
 
