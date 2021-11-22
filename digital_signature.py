@@ -61,7 +61,7 @@ def get_text(file_path,status):
     #status Yes = terdapat digital signature pada text
     #status No = tidak terdapat signature paada text
     if(status == "Yes"):
-        for i in range(count-3):
+        for i in range(count-4):
             text += str(content[i])
     else:
         for i in range(count):
@@ -74,9 +74,12 @@ def verification_ds(file_path,file_path_ds,publick,n,status):
     ds = int(ds,16)
     print("ini ds nya",ds)
     h_ = pow(ds,publick)%n
+    
     text = get_text(file_path,status)
+    print(text)
     H = str(sha256.sha256(text))
     dh = int(H,36)
+    print(dh)
     h = dh % n
     
     print(h_)
