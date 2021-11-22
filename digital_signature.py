@@ -7,7 +7,7 @@ def hesh(text):
     return("A4C05176E1440FC879C06C72FA603A24")
 
 def make_digital_signature(file_path,privat_K,n):
-    text = get_text(file_path)
+    text = get_text(file_path,"no")
     H = hesh(text) #ganti pake punya zaim
     h = int(H,16)
     S = pow(h,privat_K)%n
@@ -44,7 +44,7 @@ def get_ds(file_path):
     content = file.readlines()
     return(content[count-2])
 
-def get_text(file_path):
+def get_text(file_path,status):
     file = open(file_path)
     
     #find len file
@@ -57,15 +57,22 @@ def get_text(file_path):
     file.seek(0)
     content = file.readlines()
     
-    for i in range(count-3):
-        text += str(content[i])
+    #status Yes = terdapat digital signature pada text
+    #status No = tidak terdapat signature paada text
+    if(status == "Yes"):
+        for i in range(count-3):
+            text += str(content[i])
+    else:
+        for i in range(count):
+            text += str(content[i])
     return (text)
+
     
-def verification_ds(file_path,file_path_ds,publick,n):
+def verification_ds(file_path,file_path_ds,publick,n,status):
     ds = get_ds(file_path_ds)
     ds = int(ds,16)
     h_ = pow(ds,publick)%n
-    text = get_text(file_path)
+    text = get_text(file_path,status)
     H = hesh(text)  #ganti pake punya zaim
     dh = int(H,16)
     h = dh % n
@@ -81,5 +88,5 @@ def verification_ds(file_path,file_path_ds,publick,n):
 # ds = get_ds("contoh.txt")
 # print(ds)
 # verification_ds("contoh.txt",731,223427)
-text = get_text("contoh.txt")
-print(text)
+# text = get_text("C:/Users/user/Documents/Kriptografi/tugas 5/Tubes-Kripto-5/contoh.txt","No")
+# print(text)
