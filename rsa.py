@@ -51,6 +51,11 @@ def rsa_encry(m,p,q,e):
             result.append(x)
         return result
         
+    # 'r' open for reading (default)
+    # 'w' open for writing, truncating the file first
+    # 'x' open for exclusive creation, failing if the file already exists
+    # 'a' open for writing, appending to the end of the file if it exists
+        
 def save_key(e,n,d):
     # public key
     file = open("./key/rsa.pub", "w") 
@@ -60,11 +65,20 @@ def save_key(e,n,d):
     # private key
     file = open("./key/rsa.pri", "w") 
     file.write(str(d)+' '+str(n)) 
+    file.close()
+    
+def save_key_pri(e,n,d):
+
+    # private key
+    file = open("./key/rsa.pri", "w") 
+    file.write(str(d)+' '+str(n)) 
     file.close() 
-    # 'r' open for reading (default)
-    # 'w' open for writing, truncating the file first
-    # 'x' open for exclusive creation, failing if the file already exists
-    # 'a' open for writing, appending to the end of the file if it exists
+
+def save_key_pub(e,n,d):
+    # public key
+    file = open("./key/rsa.pub", "w") 
+    file.write(str(e) + ' ' + str(n))
+    file.close()
 
 # KELOMPOKKAN MENJADI SEPERTI 4 BIT
 def gabung_blok(m):
